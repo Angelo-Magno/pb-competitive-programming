@@ -4,3 +4,4 @@ beecrowd/rev_py.py
 beecrowd/rev_rs.rs
 beecrowd/test_version.c
 beecrowd/input.txt
+*.exe
