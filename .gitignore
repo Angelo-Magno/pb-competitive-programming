@@ -5,4 +5,5 @@ beecrowd/rev_rs.rs
 beecrowd/test_version.c
 beecrowd/input.txt
 *.exe
-.vscode
+.vscode/
+beecrowd/.vscode/
