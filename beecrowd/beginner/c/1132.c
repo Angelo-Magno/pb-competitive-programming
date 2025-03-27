@@ -24,12 +24,7 @@ int main() {
 
     a = (x % 13) > 0 ? x - (x % 13) + 13 : x;
     an = (y % 13) > 0 ? y - (y % 13) : y;
-
-    if (a > an){
-        ap_sum_d13 = 0;
-    } else {
-        ap_sum_d13 = arithmetic_progression(a, an, 13);
-    }
+    ap_sum_d13 = arithmetic_progression(a, an, 13);
 
     printf("%d\n", ap_sum_d1 - ap_sum_d13);
     
