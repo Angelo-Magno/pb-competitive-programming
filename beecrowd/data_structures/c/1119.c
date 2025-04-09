@@ -58,6 +58,9 @@ int remove_node(CircularList *list, Node *node) {
         return 0;
     }
 
+    if (node == list->head) list->head = list->head->next;
+    if (node == list->tail) list->tail = list->tail->prev;
+
     if (list->size == 2) {
         prev_node = node->prev;
         prev_node->prev = prev_node;
@@ -97,15 +100,13 @@ Node* clockwise(Node *node, int x, int size_list) {
 }
 
 int main() {
-    int n, k, m, v;
+    int n, k, m, v, v1, v2;
     Node *aux1, *aux2;
 
     while (1) {
         scanf("%d %d %d", &n, &k, &m);
 
-        if (n == 0 && k == 0 && m == 0) {
-            break;
-        }
+        if (n == 0 && k == 0 && m == 0) break;
       
         CircularList *circular_list = create_list();
 
@@ -113,33 +114,17 @@ int main() {
             insert(circular_list, i);
         }
 
-        Node *first, *last;
-        
-        first = circular_list->head;
-        last = circular_list->tail;
-    
         while (circular_list->size != 0) {
-            first = clockwise(first, k, circular_list->size);
-            last = counter_clockwise(last, m, circular_list->size);
+            circular_list->head = clockwise(circular_list->head, k, circular_list->size);
+            circular_list->tail = counter_clockwise(circular_list->tail, m, circular_list->size);
 
-            if (first == last) {
-                aux1 = first->next;
-                aux2 = last->prev;
-                v = remove_node(circular_list, first);
-                first = aux1;
-                last = aux2;
+            if (circular_list->head == circular_list->tail) {
+                v = remove_node(circular_list, circular_list->head);
                 printf("%3d", v);
 
             } else {
-                aux1 = first->next;
-                if (aux1 == last) aux1 = aux1->next;
-                aux2 = last->prev;
-                if (aux2 == first) aux2 = aux2->prev;
-
-                int v1 = remove_node(circular_list, first);
-                first = aux1;
-                int v2 = remove_node(circular_list, last);
-                last = aux2;
+                v1 = remove_node(circular_list, circular_list->head);
+                v2 = remove_node(circular_list, circular_list->tail);
                 printf("%3d%3d", v1, v2);
             }
             
