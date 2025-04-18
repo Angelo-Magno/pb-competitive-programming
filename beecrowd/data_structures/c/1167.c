@@ -90,18 +90,6 @@ Node* clockwise(Node *node, int x, int size_list) {
     return node;
 }
 
-
-void print_list(CircularList *list) {
-
-    Node *current = list->head;
-    for (int i = 0; i < list->size; i ++) {
-        printf(" %s <-> ", current->name);
-        current = current->next;
-    }
-    printf("\n");
-}
-
-
 int main() {
     int n, token;
     char name[32];
@@ -121,7 +109,6 @@ int main() {
 
             insert(list, name, token);
         }
-        // print_list(list);
 
         current = list->tail;
         token = current->token;
